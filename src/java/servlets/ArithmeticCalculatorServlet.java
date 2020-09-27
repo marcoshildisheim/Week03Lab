@@ -30,10 +30,11 @@ public class ArithmeticCalculatorServlet extends HttpServlet
         String valueOne = request.getParameter("firstValue");
         String valueTwo = request.getParameter("secondValue");
         String selection = request.getParameter("calculation");
+        String message = "-----";
         
         if(valueOne == null || valueOne.equals("") || valueTwo == null || valueTwo.equals(""))
         {
-            request.setAttribute("message", "Sorry, this is invalid...");
+            message = ("Sorry, this is invalid...");
         }
         else
         {
@@ -45,16 +46,16 @@ public class ArithmeticCalculatorServlet extends HttpServlet
                 switch(selection)
                 {
                     case "+":
-                        request.setAttribute("message", String.valueOf(firstVal + secondVal));
+                       message = String.valueOf(firstVal + secondVal);
                         break;
                     case "-":
-                        request.setAttribute("message", String.valueOf(firstVal - secondVal));
+                        message = String.valueOf(firstVal - secondVal);
                         break; 
                     case "*":
-                        request.setAttribute("message", String.valueOf(firstVal * secondVal));
+                        message = String.valueOf(firstVal * secondVal);
                         break; 
                     case "%":
-                        request.setAttribute("message", String.valueOf(firstVal % secondVal));
+                        message = String.valueOf(firstVal % secondVal);
                         break;    
                 }
             }
@@ -63,6 +64,9 @@ public class ArithmeticCalculatorServlet extends HttpServlet
                 request.setAttribute("message", "Sorry, this is invalid...");
             }
         }
+        request.setAttribute("firstValue", valueOne);
+        request.setAttribute("secondValue", valueTwo);
+        request.setAttribute("message", message);
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp")
             .forward(request, response);
     }
