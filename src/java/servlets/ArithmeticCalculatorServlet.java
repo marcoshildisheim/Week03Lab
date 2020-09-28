@@ -67,6 +67,7 @@ public class ArithmeticCalculatorServlet extends HttpServlet
         request.setAttribute("firstValue", valueOne);
         request.setAttribute("secondValue", valueTwo);
         request.setAttribute("message", message);
+        
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp")
             .forward(request, response);
     }
